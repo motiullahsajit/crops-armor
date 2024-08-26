@@ -1,6 +1,7 @@
 import express from "express";
 import { config } from "dotenv";
 import { connectDB } from "./utils/features.js";
+import sensorDataRoute from "./routes/sensorRoutes.js";
 import morgan from "morgan";
 import cors from "cors";
 
@@ -12,15 +13,17 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 
-const corsOptions = {
-  origin: "https://swift-cart-zeta.vercel.app",
-};
+// const corsOptions = {
+//   origin: "https://swift-cart-zeta.vercel.app",
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 const port = process.env.PORT || 4000;
 const mongoURI = process.env.MONGO_URI || "";
 connectDB(mongoURI);
+
+app.use("/api/sensors", sensorDataRoute);
 
 app.get("/", (req, res) => {
   res.send("API working with /api/v1/");
