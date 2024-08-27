@@ -95,7 +95,7 @@ void loop() {
 
     Serial.println(data);
 
-    if (soilMoistureValue < 400) {
+    if (soilMoistureValue > 900) {
       digitalWrite(relayPin, HIGH);  
     } else {
       digitalWrite(relayPin, LOW);  
@@ -127,7 +127,7 @@ void loop() {
       digitalWrite(waterLevelLED1, HIGH);
       digitalWrite(waterLevelLED2, LOW);
       digitalWrite(waterLevelLED3, LOW);
-    } else if (waterLevelValue >= 300 && waterLevelValue < 550) {
+    } else if (waterLevelValue >= 300 && waterLevelValue < 400) {
       digitalWrite(waterLevelLED1, HIGH);
       digitalWrite(waterLevelLED2, HIGH);
       digitalWrite(waterLevelLED3, LOW);
