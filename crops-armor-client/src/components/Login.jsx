@@ -6,7 +6,6 @@ import { FcGoogle } from "react-icons/fc";
 import { ToastContainer, toast } from "react-toastify";
 import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../providers/AuthProvider";
-import loginImg from '../assets/login.svg';
 const googleProvider = new GoogleAuthProvider()
 
 const Login = () => {
@@ -51,16 +50,20 @@ const Login = () => {
     }
 
     return (
-        <div className="mb-20">
+        <div className="mb-10">
             {/* <Helmet>
                 <title>Login | Heal Hive</title>
             </Helmet> */}
             <ToastContainer></ToastContainer>
-            <div>
+            <div className="">
             <h2 className="text-5xl my-10 text-center font-extrabold text-green-600">Login Now <span className="text-black">!</span></h2>
-            <div className='flex flex-col-reverse md:flex-col-reverse lg:flex-row shadow-2xl'>
-                <div className="w-full lg:w-3/5 text-center justify-center">
-                <form onSubmit={handleLogin} className="card-body justify-center mt-10">
+            <div className='lg:w-6/12 mx-auto flex flex-col-reverse md:flex-col-reverse lg:flex-row rounded-2xl' style={{ 
+    backgroundImage: `url('https://i.ibb.co/M1dXf93/Untitled-design-3.png')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'}}>
+                <div className="w-full text-center justify-center shadow-2xl">
+                <form onSubmit={handleLogin} className="card-body justify-center mt-10 bg">
                         <div className="form-control">
                         <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                         </div>
@@ -80,9 +83,9 @@ const Login = () => {
                         <button onClick={handleGoogleSignIn} className="border w-1/2 inline-flex gap-5 rounded-lg p-4 bg-blue-100 font-bold"><FcGoogle className="text-2xl ml-10"/>Login with Google</button>
                     </div>
                 </div>
-                    <div className='w-full lg:w-2/5'>
-                        <img className='w-full h-full md:h-[600px] lg:h-full' src={loginImg} alt="" />
-                    </div>
+                    {/* <div className='w-full lg:w-2/5'>
+                        <img className='w-full h-full md:h-[400px] lg:h-full' src={loginImg} alt="" />
+                    </div> */}
                 </div>
                 <p className="text-center mt-5">Do not have an account?<Link className="ml-2 text-blue-600 font-bold" to="/register">Register</Link></p>
         </div>
