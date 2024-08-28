@@ -10,6 +10,7 @@ DHT_Unified dht(DHTPIN, DHTTYPE);
 #define soilMoisturePin A0
 #define waterLevelPin A1
 #define ldrPin 8  
+#define soundSensorPin A2 
 
 #define waterLevelLED1 3
 #define waterLevelLED2 4
@@ -17,35 +18,54 @@ DHT_Unified dht(DHTPIN, DHTTYPE);
 #define ldrLED 6
 #define relayPin 7
 
+#define pirPin 9  
+#define buzzerPin 10  
+
 LiquidCrystal_I2C lcd(0x27, 16, 2); 
+
+int calibrationTime = 30;        
+
+long unsigned int lowIn;         
+
+long unsigned int pause = 5000;  
+
+boolean lockLow = true;
+boolean takeLowTime;  
 
 unsigned long previousMillisSensors = 0;
 unsigned long previousMillisLCD = 0;
 unsigned long previousMillisLEDs = 0;
+unsigned long previousMillisBuzzer = 0;
 const long sensorInterval = 1000; 
 const long lcdInterval = 2000;    
 const long ledInterval = 100;     
+const long buzzerDuration = 5000;  
 
 float temperature = 0.0;
 float humidity = 0.0;
 int soilMoistureValue = 0;
 int waterLevelValue = 0;
 int ldrValue = 0;
+int soundValue = 0;  
 
 const int numSamples = 10;
 int soilMoistureSamples[numSamples];
 int sampleIndex = 0;
+bool motionDetected = false;
 
 void setup() {
   pinMode(soilMoisturePin, INPUT);
   pinMode(waterLevelPin, INPUT);
   pinMode(ldrPin, INPUT);  
+  pinMode(soundSensorPin, INPUT); 
 
   pinMode(waterLevelLED1, OUTPUT);
   pinMode(waterLevelLED2, OUTPUT);
   pinMode(waterLevelLED3, OUTPUT);
   pinMode(ldrLED, OUTPUT);
   pinMode(relayPin, OUTPUT);
+  pinMode(pirPin, INPUT);
+  pinMode(buzzerPin, OUTPUT);
 
   lcd.init();
   lcd.backlight();
@@ -56,6 +76,17 @@ void setup() {
   for (int i = 0; i < numSamples; i++) {
     soilMoistureSamples[i] = analogRead(soilMoisturePin);
   }
+
+  digitalWrite(pirPin, LOW);
+
+  Serial.print("calibrating sensor ");
+  for(int i = 0; i < calibrationTime; i++){
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println(" done");
+  Serial.println("SENSOR ACTIVE");
+  delay(50);
 }
 
 void loop() {
@@ -76,6 +107,7 @@ void loop() {
 
     waterLevelValue = analogRead(waterLevelPin);
     ldrValue = digitalRead(ldrPin);
+    soundValue = analogRead(soundSensorPin);  
 
     sensors_event_t event;
 
@@ -90,7 +122,8 @@ void loop() {
     data += "\"humidity\":" + String(humidity, 1) + ",";
     data += "\"soilMoisture\":" + String(soilMoistureValue) + ",";
     data += "\"waterLevel\":" + String(waterLevelValue) + ",";
-    data += "\"ldrValue\":\"" + String(ldrValue == HIGH ? "Dark" : "Light") + "\"";
+    data += "\"ldrValue\":\"" + String(ldrValue == HIGH ? "Dark" : "Light") + "\",";
+    data += "\"soundValue\":" + String(soundValue);  
     data += "}";
 
     Serial.println(data);
@@ -115,9 +148,13 @@ void loop() {
     lcd.print(humidity, 1); 
     lcd.print("%");
 
-    lcd.setCursor(10, 1); 
+    lcd.setCursor(10, 0); 
     lcd.print("M:");
     lcd.print(soilMoistureValue);
+
+    lcd.setCursor(10, 1); 
+    lcd.print("F:");
+    lcd.print(soundValue);  
   }
 
   if (currentMillis - previousMillisLEDs >= ledInterval) {
@@ -139,7 +176,32 @@ void loop() {
 
     if (ldrValue == HIGH) {
       digitalWrite(ldrLED, HIGH);  
-      digitalWrite(ldrLED, LOW);   
+    } else {
+      digitalWrite(ldrLED, LOW); 
+    }
+  }
+
+  if (digitalRead(pirPin) == HIGH) {
+    if (lockLow) {
+      lockLow = false;
+      motionDetected = true;
+      digitalWrite(buzzerPin, HIGH);
+      previousMillisBuzzer = currentMillis;
+      Serial.println("---");
+      Serial.print("motion detected at ");
+      Serial.print(millis()/1000);
+      Serial.println(" sec"); 
+    }
+  } 
+
+  if (motionDetected) {
+    if (currentMillis - previousMillisBuzzer >= buzzerDuration) {
+      motionDetected = false;
+      digitalWrite(buzzerPin, LOW);
+      lockLow = true; 
+      Serial.print("motion ended at ");      
+      Serial.print((millis() - pause)/1000);
+      Serial.println(" sec");
     }
   }
 }
