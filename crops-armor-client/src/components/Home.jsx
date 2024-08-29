@@ -9,6 +9,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { Link} from 'react-router-dom';
 
 ChartJS.register(
     CategoryScale,
@@ -43,15 +44,15 @@ const Home = () => {
     };
 
     return (
-        <div className="flex flex-col mt-10 mb-10 md:flex-row bg-gray-100 rounded-2xl">
+        <div className="flex flex-col mb-10 md:flex-row bg-gray-100 rounded-2xl">
             {/* Sidebar */}
-            <div className="w-full md:w-1/5 bg-gray-900 text-white p-5 lg:rounded-l-2xl">
-                <h2 className="text-3xl font-bold mb-5 text-center md:text-left">Dashboard</h2>
-                {/* <ul className="space-y-4">
-                    <li><Link to="/" className="text-lg block text-center md:text-left hover:underline">Home</Link></li>
-                    <li><Link to="/devices" className="text-lg block text-center md:text-left hover:underline">Devices</Link></li>
-                    <li><Link to="/settings" className="text-lg block text-center md:text-left hover:underline">Settings</Link></li>
-                </ul> */}
+            <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
+                <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
+                {<div className="gap-2 mb-10 md:space-y-4 flex flex-row md:flex-col justify-center items-center">
+                    <Link to="/"><button className="btn btn-outline btn-success w-[150px]">Data</button></Link>
+                    <Link to="/past_stat"><button className="btn btn-outline btn-info w-[150px]">Past Stats</button></Link>
+                    <Link to="/"><button className="btn btn-outline btn-accent w-[150px]">Analysis</button></Link>
+                </div>}
             </div>
 
             {/* Main Content */}

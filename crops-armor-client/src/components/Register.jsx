@@ -77,16 +77,12 @@ const Register = () => {
     }
 
     return (
-        <div className="hero min-h-screen">
+        <div className="hero mt-10 w-full">
             {/* <Helmet>
                 <title>Register | Heal Hive</title>
             </Helmet> */}
             <ToastContainer></ToastContainer>
-            <div className="hero-content flex-col md:flex-row lg:flex-row">
-                <div className="w-full lg:w-1/2 mr-12">
-                    <img src="https://i.ibb.co/552kDMF/Wavy-Gen-01-Single-07.jpg" alt="" />
-                </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="card flex-shrink-0 w-full max-w-sm border-2">
                     <div className="card-body">
                         <h1 className="text-3xl text-center font-bold text-green-600">Register <span className="text-black">Now!</span></h1>
                         <form onSubmit={handleRegister}>
@@ -130,7 +126,6 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 
