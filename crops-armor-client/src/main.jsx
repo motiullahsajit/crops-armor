@@ -11,6 +11,7 @@ import Register from './components/Register';
 import AuthProvider from './providers/AuthProvider';
 import Root from './components/Root'; // Import the correct Root component
 import PastStat from './components/PastStat';
+import PrivateRoute from './components/routes/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     children:[
       {
         path: "/",
-        element: <Home></Home>
+        element: <PrivateRoute><Home></Home></PrivateRoute>
       },
       {
         path: "/login",
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/past_stat",
-        element: <PastStat></PastStat>
+        element: <PrivateRoute><PastStat></PastStat></PrivateRoute>
       }
     ]
   },
