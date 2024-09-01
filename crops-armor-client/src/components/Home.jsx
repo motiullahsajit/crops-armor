@@ -1,57 +1,15 @@
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
 import { Link} from 'react-router-dom';
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
-
 const Home = () => {
-    const data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: 'Temperature',
-                data: [65, 59, 80, 81, 56, 55, 40],
-                fill: false,
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgba(255, 99, 132, 0.2)',
-            },
-        ],
-    };
-
-    const options = {
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        },
-    };
-
     return (
         <div className="flex flex-col mb-10 md:flex-row bg-gray-100 rounded-2xl">
             {/* Sidebar */}
             <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
                 <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
-                {<div className="gap-2 mb-10 md:space-y-4 flex flex-row md:flex-col justify-center items-center">
-                    <Link to="/"><button className="btn btn-outline btn-success w-[150px]">Data</button></Link>
-                    <Link to="/past_stat"><button className="btn btn-outline btn-info w-[150px]">Past Stats</button></Link>
-                    <Link to="/"><button className="btn btn-outline btn-accent w-[150px]">Analysis</button></Link>
+                {<div className="">
+                    <Link to="/"><button className="btn btn-outline btn-success w-full mb-4">Data</button></Link>
+                    <Link to="/past_stat"><button className="btn btn-outline btn-info w-full mb-4">Past Stats</button></Link>
+                    <Link to="/"><button className="btn btn-outline btn-accent w-full">Analysis</button></Link>
                 </div>}
             </div>
 
@@ -73,7 +31,7 @@ const Home = () => {
                         <p className="text-3xl lg:text-4xl">Day</p>
                     </div>
                 </div>
-                
+
                 {/* Soil Data Section */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
                     <h2 className="text-3xl font-extrabold mb-5 col-span-full border-4 border-yellow-400 p-2 rounded-xl">Soil Data</h2>
@@ -103,17 +61,7 @@ const Home = () => {
                         <h2 className="text-xl lg:text-2xl font-semibold mb-2">Animal Presence</h2>
                         <p className="text-3xl lg:text-4xl">Yes</p>
                     </div>
-                </div>
-
-                {/* Chart */}
-                {/* <div className="bg-white p-6 rounded-lg shadow-md mb-10">
-                    <h2 className="text-xl lg:text-2xl font-semibold mb-4 text-center lg:text-left">Temperature Over Time</h2>
-                    <div className="h-64">
-                        <Line data={data} options={options} />
-                    </div>
-                </div> */}
-
-               
+                </div>               
             </div>
         </div>
     );
