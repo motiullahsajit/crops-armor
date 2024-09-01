@@ -29,7 +29,7 @@ const PastStat = () => {
     const [wind, setWind] = useState([]);
     const [precipitation, setPrecipitation] = useState([]);
 
-    const [isLoading, setIsLoading] = useState(true);
+    // const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -70,16 +70,13 @@ const PastStat = () => {
                 setWind(windData);
                 setMoisture(soilMoistureData);
                 setPrecipitation(precipitationData)
-                setIsLoading(false);
             })
             .catch(error => {
                 console.error('Fetching error:', error);
                 setError(error);
-                setIsLoading(false);
             });
     }, []);
 
-    if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
     const labels = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC", "ANN"];
@@ -283,10 +280,10 @@ const PastStat = () => {
         <div className='flex flex-col mb-10 md:flex-row bg-gray-100 rounded-2xl'>
             <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
                 <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
-                {<div className="gap-2 mb-10 md:space-y-4 flex flex-row md:flex-col justify-center items-center">
-                    <Link to="/"><button className="btn btn-outline btn-success w-[150px]">Data</button></Link>
-                    <Link to="/past_stat"><button className="btn btn-outline btn-info w-[150px]">Past Stats</button></Link>
-                    <Link to="/"><button className="btn btn-outline btn-accent w-[150px]">Analysis</button></Link>
+                {<div className="">
+                    <Link to="/"><button className="btn btn-outline btn-success w-full mb-4">Data</button></Link>
+                    <Link to="/past_stat"><button className="btn btn-outline btn-info w-full mb-4">Past Stats</button></Link>
+                    <Link to="/"><button className="btn btn-outline btn-accent w-full mb-4">Analysis</button></Link>
                 </div>}
                 </div>
         <div className='w-full space-y-10'>
