@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import Home from './components/Home';
 import Login from './components/Login';
-import Register from './components/Register';
 import AuthProvider from './providers/AuthProvider';
 import Root from './components/Root'; // Import the correct Root component
 import PastStat from './components/PastStat';
@@ -25,10 +24,6 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>
-      },
-      {
-        path: "/register",
-        element: <Register></Register>
       },
       {
         path: "/past_stat",

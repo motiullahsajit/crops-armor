@@ -57,40 +57,6 @@ const Home = () => {
 
             {/* Main Content */}
             <div className="flex-1 p-5 md:p-10">
-                {/* Soil Data Section */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                    <h2 className="text-3xl font-extrabold mb-5 col-span-full border-4 border-yellow-400 p-2 rounded-xl">Soil Data</h2>
-                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Soil pH</h2>
-                        <p className="text-3xl lg:text-4xl">6.5</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Moisture</h2>
-                        <p className="text-3xl lg:text-4xl">45%</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Soil Type</h2>
-                        <p className="text-3xl lg:text-4xl">Loamy</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Water Level</h2>
-                        <p className="text-3xl lg:text-4xl">High</p>
-                    </div>
-                </div>
-
-                {/* Water Data Section */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                    <h2 className="text-3xl font-extrabold mb-5 col-span-full border-4 border-blue-400 p-2 rounded-xl">Water Data</h2>
-                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Water Temperature</h2>
-                        <p className="text-3xl lg:text-4xl">22°C</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
-                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Water pH</h2>
-                        <p className="text-3xl lg:text-4xl">7.2</p>
-                    </div>
-                </div>
-
                 {/* Weather Data Section */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
                     <h2 className="text-3xl font-extrabold mb-5 col-span-full border-4 border-gray-400 p-2 rounded-xl">Weather Data</h2>
@@ -107,44 +73,47 @@ const Home = () => {
                         <p className="text-3xl lg:text-4xl">Day</p>
                     </div>
                 </div>
+                
+                {/* Soil Data Section */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                    <h2 className="text-3xl font-extrabold mb-5 col-span-full border-4 border-yellow-400 p-2 rounded-xl">Soil Data</h2>
+                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Moisture</h2>
+                        <p className="text-3xl lg:text-4xl">6.5</p>
+                    </div>
+                </div>
+
+                {/* Water Data Section */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                    <h2 className="text-3xl font-extrabold mb-5 col-span-full border-4 border-blue-400 p-2 rounded-xl">Water Data</h2>
+                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Water Level</h2>
+                        <p className="text-3xl lg:text-4xl">High</p>
+                    </div>
+                </div>
+
+                {/* Pest Data Section */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                    <h2 className="text-3xl font-extrabold mb-5 col-span-full border-4 border-red-400 p-2 rounded-xl">Pest and Animal Data</h2>
+                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Sound Frequency</h2>
+                        <p className="text-3xl lg:text-4xl">200Hz</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                        <h2 className="text-xl lg:text-2xl font-semibold mb-2">Animal Presence</h2>
+                        <p className="text-3xl lg:text-4xl">Yes</p>
+                    </div>
+                </div>
 
                 {/* Chart */}
-                <div className="bg-white p-6 rounded-lg shadow-md mb-10">
+                {/* <div className="bg-white p-6 rounded-lg shadow-md mb-10">
                     <h2 className="text-xl lg:text-2xl font-semibold mb-4 text-center lg:text-left">Temperature Over Time</h2>
                     <div className="h-64">
                         <Line data={data} options={options} />
                     </div>
-                </div>
+                </div> */}
 
-                {/* Data Table */}
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                    <h2 className="text-xl lg:text-2xl font-semibold mb-4 text-center lg:text-left">Device Data Logs</h2>
-                    <table className="w-full bg-white">
-                        <thead>
-                            <tr>
-                                <th className="py-2 px-4 border-b">Device</th>
-                                <th className="py-2 px-4 border-b">Timestamp</th>
-                                <th className="py-2 px-4 border-b">Temperature</th>
-                                <th className="py-2 px-4 border-b">Humidity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className='text-center'>
-                                <td className="py-2 px-4 border-b">Device 1</td>
-                                <td className="py-2 px-4 border-b">2024-08-20 14:00</td>
-                                <td className="py-2 px-4 border-b">24°C</td>
-                                <td className="py-2 px-4 border-b">58%</td>
-                            </tr>
-                            <tr className='text-center'>
-                                <td className="py-2 px-4 border-b">Device 2</td>
-                                <td className="py-2 px-4 border-b">2024-08-20 14:05</td>
-                                <td className="py-2 px-4 border-b">26°C</td>
-                                <td className="py-2 px-4 border-b">60%</td>
-                            </tr>
-                            {/* Add more rows as needed */}
-                        </tbody>
-                    </table>
-                </div>
+               
             </div>
         </div>
     );
