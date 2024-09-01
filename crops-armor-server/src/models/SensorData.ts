@@ -1,12 +1,30 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const schema = new mongoose.Schema({
-  temperature: { type: Number, required: true },
-  humidity: { type: Number, required: true },
-  soilMoisture: { type: Number, required: true },
-  waterLevel: { type: Number, required: true },
-  ldrValue: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-});
+interface SensorData {
+  temperature: number;
+  humidity: number;
+  soilMoisture: number;
+  waterLevel: number;
+  ldrValue: string;
+  soundFrequency: number;
+  pirValue: number;
+}
 
-export const SensorData = mongoose.model("SensorData", schema);
+const sensorDataSchema = new Schema<SensorData>(
+  {
+    temperature: { type: Number, required: true },
+    humidity: { type: Number, required: true },
+    soilMoisture: { type: Number, required: true },
+    waterLevel: { type: Number, required: true },
+    ldrValue: { type: String, required: true },
+    soundFrequency: { type: Number, required: true },
+    pirValue: { type: Number, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const SensorData = model<SensorData>("SensorData", sensorDataSchema);
+
+export default SensorData;
