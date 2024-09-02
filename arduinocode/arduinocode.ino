@@ -47,6 +47,7 @@ int soilMoistureValue = 0;
 int waterLevelValue = 0;
 int ldrValue = 0;
 int soundValue = 0;  
+int pirValue = 0;  
 
 const int numSamples = 10;
 int soilMoistureSamples[numSamples];
@@ -108,6 +109,7 @@ void loop() {
     waterLevelValue = analogRead(waterLevelPin);
     ldrValue = digitalRead(ldrPin);
     soundValue = analogRead(soundSensorPin);  
+    pirValue = digitalRead(pirPin);  
 
     sensors_event_t event;
 
@@ -123,7 +125,8 @@ void loop() {
     data += "\"soilMoisture\":" + String(soilMoistureValue) + ",";
     data += "\"waterLevel\":" + String(waterLevelValue) + ",";
     data += "\"ldrValue\":\"" + String(ldrValue == HIGH ? "Dark" : "Light") + "\",";
-    data += "\"soundValue\":" + String(soundValue);  
+    data += "\"soundFrequency\":" + String(soundValue) + ",";
+    data += "\"pirValue\":" + String(pirValue);  
     data += "}";
 
     Serial.println(data);

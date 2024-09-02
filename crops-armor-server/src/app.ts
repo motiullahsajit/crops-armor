@@ -2,6 +2,7 @@ import express from "express";
 import { config } from "dotenv";
 import { connectDB } from "./utils/features.js";
 import sensorDataRoute from "./routes/sensorRoutes.js";
+import analyzeDataRoute from "./routes/analyzeRoutes.js";
 import morgan from "morgan";
 import cors from "cors";
 
@@ -24,6 +25,7 @@ const mongoURI = process.env.MONGO_URI || "";
 connectDB(mongoURI);
 
 app.use("/api/sensors", sensorDataRoute);
+app.use("/api/analyze", analyzeDataRoute);
 
 app.get("/", (req, res) => {
   res.send("API working with /api/v1/");

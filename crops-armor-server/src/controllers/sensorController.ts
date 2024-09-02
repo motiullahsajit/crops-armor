@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { SensorData } from "../models/SensorData.js";
+import SensorData from "../models/SensorData.js";
 
 export const getSensorData = async (req: Request, res: Response) => {
   try {
@@ -13,8 +13,15 @@ export const getSensorData = async (req: Request, res: Response) => {
 
 export const storeSensorData = async (req: any, res: any) => {
   try {
-    const { temperature, humidity, soilMoisture, waterLevel, ldrValue } =
-      req.body;
+    const {
+      temperature,
+      humidity,
+      soilMoisture,
+      waterLevel,
+      ldrValue,
+      soundFrequency,
+      pirValue,
+    } = req.body;
 
     const newSensorData = new SensorData({
       temperature,
@@ -22,6 +29,8 @@ export const storeSensorData = async (req: any, res: any) => {
       soilMoisture,
       waterLevel,
       ldrValue,
+      soundFrequency,
+      pirValue,
     });
 
     await newSensorData.save();
