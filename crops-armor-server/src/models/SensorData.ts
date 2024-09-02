@@ -1,30 +1,25 @@
 import { Schema, model } from "mongoose";
 
-interface SensorData {
+export interface SensorData {
   temperature: number;
   humidity: number;
   soilMoisture: number;
   waterLevel: number;
-  ldrValue: string;
+  ldrValue: number;
   soundFrequency: number;
   pirValue: number;
+  createdAt: Date;
 }
 
-const sensorDataSchema = new Schema<SensorData>(
-  {
-    temperature: { type: Number, required: true },
-    humidity: { type: Number, required: true },
-    soilMoisture: { type: Number, required: true },
-    waterLevel: { type: Number, required: true },
-    ldrValue: { type: String, required: true },
-    soundFrequency: { type: Number, required: true },
-    pirValue: { type: Number, required: true },
-  },
-  {
-    timestamps: true,
-  }
-);
+const sensorDataSchema = new Schema<SensorData>({
+  temperature: { type: Number, required: true },
+  humidity: { type: Number, required: true },
+  soilMoisture: { type: Number, required: true },
+  waterLevel: { type: Number, required: true },
+  ldrValue: { type: Number, required: true },
+  soundFrequency: { type: Number, required: true },
+  pirValue: { type: Number, required: true },
+  createdAt: { type: Date, default: Date.now },
+});
 
-const SensorData = model<SensorData>("SensorData", sensorDataSchema);
-
-export default SensorData;
+export default model<SensorData>("SensorData", sensorDataSchema);
