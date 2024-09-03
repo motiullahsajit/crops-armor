@@ -1,7 +1,5 @@
 # Crops Armor - Informed Agricultural Decision-Making Tool
 
-![Crops Armor](overview/iotdevice.jpg)
-
 ## Overview
 
 Crops Armor is an innovative tool designed to empower farmers with accurate, real-time insights into environmental conditions. By leveraging both NASA datasets and real-time sensor data, Crops Armor helps farmers make informed decisions to optimize crop yields, manage water resources effectively, and mitigate risks related to floods and droughts.
