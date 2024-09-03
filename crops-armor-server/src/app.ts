@@ -21,11 +21,11 @@ app.use(cors({
 app.use(express.json());
 app.use(morgan("dev"));
 
-// const corsOptions = {
-//   origin: "https://swift-cart-zeta.vercel.app",
-// };
+const corsOptions = {
+  origin: "https://crops-armor.vercel.app",
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 const port = process.env.PORT || 4000;
 const mongoURI = process.env.MONGO_URI || "";
