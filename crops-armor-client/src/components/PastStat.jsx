@@ -282,8 +282,8 @@ const PastStat = () => {
                 <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
                 {<div className="">
                     <Link to="/"><button className="btn btn-outline btn-success w-full mb-4">Data</button></Link>
-                    <Link to="/past_stat"><button className="btn btn-outline btn-info w-full mb-4">Past Stats</button></Link>
-                    <Link to="/analysis"><button className="btn btn-outline btn-accent w-full mb-4">Analysis</button></Link>
+                    <Link to="/analysis"><button className="btn btn-outline btn-info w-full mb-4">Analysis</button></Link>
+                    <Link to="/past_stat"><button className="btn btn-outline btn-accent w-full mb-4">Past Stats</button></Link>
                 </div>}
                 </div>
         <div className='w-full space-y-10'>

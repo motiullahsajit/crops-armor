@@ -19,10 +19,10 @@ const Analysis = () => {
 
     useEffect(() => {
         // Fetch sensor data
-        axios.get('http://localhost:4000/api/sensors')
+        axios.get(`${import.meta.env.VITE_API_URL}/sensors`)
             .then((response) => {
                 setSensorData(response.data[0]); // Get the most recent data
-                return axios.get('http://localhost:4000/api/analyze'); // Fetch analysis data
+                return axios.get(`${import.meta.env.VITE_API_URL}/analyze`); // Fetch analysis data
             })
             .then((response) => {
                 setAnalysisData(response.data);
@@ -161,8 +161,8 @@ const Analysis = () => {
                     <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
                     <div className="">
                         <Link to="/"><button className="btn btn-outline btn-success w-full mb-4">Data</button></Link>
-                        <Link to="/past_stat"><button className="btn btn-outline btn-info w-full mb-4">Past Stats</button></Link>
-                        <Link to="/analysis"><button className="btn btn-outline btn-accent w-full">Analysis</button></Link>
+                        <Link to="/analysis"><button className="btn btn-outline btn-info w-full mb-4">Analysis</button></Link>
+                        <Link to="/past_stat"><button className="btn btn-outline btn-accent w-full">Past Stats</button></Link>
                     </div>
                 </div>
 
