@@ -3,14 +3,18 @@ import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../providers/AuthProvider";
-import loginImg from "../assets/login.svg";
-const googleProvider = new GoogleAuthProvider();
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const { signInUser, googleSignIn } = useContext(AuthContext);
+  const { signInUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
+
+  // Default email and password for demo user
+  const defaultEmail = "user@example.com";
+  const defaultPassword = "password123";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -31,33 +35,38 @@ const Login = () => {
       });
   };
 
-  const handleGoogleSignIn = () => {
-    googleSignIn(googleProvider)
+  const handleDemoLogin = () => {
+    signInUser(defaultEmail, defaultPassword)
       .then((result) => {
         console.log(result.user);
-        toast.success("Login successful");
+        toast.success("Logged in as demo user");
         setTimeout(() => {
           navigate("/");
         }, 1000);
       })
       .catch((error) => {
-        console.log("error", error.message);
-        toast.error("Error signing in with Google");
+        console.error(error);
+        toast.error("Demo user login failed");
       });
   };
 
   return (
-    <div className="mb-20">
-      {/* <Helmet>
-                <title>Login | Heal Hive</title>
-            </Helmet> */}
-      <ToastContainer></ToastContainer>
+    <div className="mb-10">
+      <ToastContainer />
       <div>
         <h2 className="text-5xl my-10 text-center font-extrabold text-green-600">
           Login Now <span className="text-black">!</span>
         </h2>
-        <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row shadow-2xl">
-          <div className="w-full lg:w-3/5 text-center justify-center">
+        <div
+          className="lg:w-6/12 mx-auto flex flex-col-reverse md:flex-col-reverse lg:flex-row rounded-2xl"
+          style={{
+            backgroundImage: `url('https://i.ibb.co/M1dXf93/Untitled-design-3.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div className="w-full text-center justify-center shadow-2xl">
             <form
               onSubmit={handleLogin}
               className="card-body justify-center mt-10"
@@ -65,10 +74,9 @@ const Login = () => {
               <div className="form-control">
                 <input
                   type="email"
-                  name="Email"
-                  placeholder="email"
+                  name="email"
+                  placeholder="Email"
                   className="input input-bordered"
-                  required
                 />
               </div>
               <div className="relative form-control">
@@ -77,8 +85,6 @@ const Login = () => {
                   placeholder="Password"
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  id=""
-                  required
                 />
                 <span
                   className="absolute top-3 right-3"
@@ -88,36 +94,19 @@ const Login = () => {
                 </span>
                 <br />
               </div>
-              <div className="form-control mt-6">
-                <button className="btn border-blue-400 bg-white text-blue-600">
+              <div className="form-control space-y-5 mt-6">
+                <button className="btn border-green-400 bg-white text-green-600">
                   Login
                 </button>
               </div>
             </form>
-            <div className="flex flex-col justify-center items-center gap-5 mb-10">
-              <button
-                onClick={handleGoogleSignIn}
-                className="border w-1/2 inline-flex gap-5 rounded-lg p-4 bg-blue-100 font-bold"
-              >
-                <FcGoogle className="text-2xl ml-10" />
-                Login with Google
+            <div className="form-control px-8 pb-7">
+              <button onClick={handleDemoLogin} className="btn btn-success">
+                Demo User
               </button>
             </div>
           </div>
-          <div className="w-full lg:w-2/5">
-            <img
-              className="w-full h-full md:h-[600px] lg:h-full"
-              src={loginImg}
-              alt=""
-            />
-          </div>
         </div>
-        <p className="text-center mt-5">
-          Do not have an account?
-          <Link className="ml-2 text-blue-600 font-bold" to="/register">
-            Register
-          </Link>
-        </p>
       </div>
     </div>
   );
