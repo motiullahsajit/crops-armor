@@ -6,18 +6,6 @@
 
 Crops Armor is an innovative tool designed to empower farmers with accurate, real-time insights into environmental conditions. By leveraging both NASA datasets and real-time sensor data, Crops Armor helps farmers make informed decisions to optimize crop yields, manage water resources effectively, and mitigate risks related to floods and droughts.
 
-## Table of Contents
-
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
-- [Web Application Overview](#web-application-overview)
-- [Project Structure](#project-structure)
-- [How It Works](#how-it-works)
-- [Technologies Used](#technologies-used)
-- [License](#license)
-
 ## Features
 
 - **Real-time Data Monitoring:** Collects and displays data from sensors, including temperature, humidity, soil moisture, water level, and more.
