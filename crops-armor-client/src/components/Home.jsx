@@ -68,6 +68,16 @@ const Home = () => {
               Past Stats
             </button>
           </Link>
+          <Link to="/community">
+            <button className="btn btn-outline btn-accent w-full">
+              Community
+            </button>
+          </Link>
+          <Link to="/help">
+            <button className="btn btn-outline btn-accent w-full">
+              Help Desk
+            </button>
+          </Link>
         </div>
       </div>
 
