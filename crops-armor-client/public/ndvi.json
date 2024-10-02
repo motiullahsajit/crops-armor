@@ -1,0 +1,53 @@
+[
+    {
+      "year": 2020,
+      "sample_value": 0.57826667,
+      "sample_count": 1104278.93,
+      "mean_value": 0.5533,
+      "mean_count": 2331562.93,
+      "anomaly_value": 0.02496667,
+      "min_value": 0.3691,
+      "max_value": 0.69483333
+    },
+    {
+      "year": 2021,
+      "sample_value": 0.6053,
+      "sample_count": 1098864.23,
+      "mean_value": 0.5533,
+      "mean_count": 2331562.93,
+      "anomaly_value": 0.052,
+      "min_value": 0.3691,
+      "max_value": 0.69483333
+    },
+    {
+      "year": 2022,
+      "sample_value": 0.59910345,
+      "sample_count": 1017045.93,
+      "mean_value": 0.5533,
+      "mean_count": 2331562.93,
+      "anomaly_value": 0.04934483,
+      "min_value": 0.3691,
+      "max_value": 0.69483333
+    },
+    {
+      "year": 2023,
+      "sample_value": 0.59436667,
+      "sample_count": 1317840.83,
+      "mean_value": 0.5533,
+      "mean_count": 2331562.93,
+      "anomaly_value": 0.04106667,
+      "min_value": 0.3691,
+      "max_value": 0.69483333
+    },
+    {
+      "year": 2024,
+      "sample_value": 0.5072381,
+      "sample_count": 928647.857,
+      "mean_value": 0.528,
+      "mean_count": 2254689.48,
+      "anomaly_value": -0.0207619,
+      "min_value": 0.29914286,
+      "max_value": 0.70152381
+    }
+  ]
+  
