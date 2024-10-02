@@ -11,6 +11,7 @@ import PrivateRoute from "./components/routes/PrivateRoute";
 import Analysis from "./components/Analysis";
 import Community from "./components/Community";
 import HelpDesk from "./components/HelpDesk";
+import AgroBotChat from "./components/AgroBotChat";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Analysis></Analysis>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/agro_bot",
+        element: (
+          <PrivateRoute>
+            <AgroBotChat />
           </PrivateRoute>
         ),
       },

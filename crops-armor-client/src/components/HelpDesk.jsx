@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Forum from "./Forum/Forum";
+import HelpDeskChat from "./HelpDesk/HelpDesk";
 
 const HelpDesk = () => {
   return (
@@ -19,17 +19,22 @@ const HelpDesk = () => {
             </button>
           </Link>
           <Link to="/past_stat">
-            <button className="btn btn-outline btn-accent w-full">
+            <button className="btn btn-outline btn-accent w-full mb-4">
               Past Stats
             </button>
           </Link>
+          <Link to="/agro_bot">
+            <button className="btn btn-outline btn-accent w-full mb-4">
+              Agro bot
+            </button>
+          </Link>
           <Link to="/community">
-            <button className="btn btn-outline btn-accent w-full">
+            <button className="btn btn-outline btn-accent w-full mb-4">
               Community
             </button>
           </Link>
           <Link to="/help">
-            <button className="btn btn-outline btn-accent w-full">
+            <button className="btn btn-outline btn-accent w-full mb-4">
               Help Desk
             </button>
           </Link>
@@ -37,7 +42,7 @@ const HelpDesk = () => {
       </div>
       {/* Forum Component */}
       <div className="w-full md:w-4/6 lg:w-4/5">
-        <Forum />
+        <HelpDeskChat />
       </div>
     </div>
   );

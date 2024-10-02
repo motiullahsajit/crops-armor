@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Forum from "./Forum/Forum";
+import AgroBot from "./AgroBot/AgroBot";
 
-const Community = () => {
+const AgroBotChat = () => {
   return (
     <div className="flex flex-col mb-10 md:flex-row bg-gray-100 rounded-2xl">
       {/* Sidebar */}
@@ -42,10 +42,10 @@ const Community = () => {
       </div>
       {/* Forum Component */}
       <div className="w-full md:w-4/6 lg:w-4/5">
-        <Forum />
+        <AgroBot />
       </div>
     </div>
   );
 };
 
-export default Community;
+export default AgroBotChat;

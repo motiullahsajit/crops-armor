@@ -1,68 +1,64 @@
 import { useState } from "react";
-import "./Forum.css";
+import "./AgroBot.css";
 
-const Forum = () => {
+const AgroBot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      user: "Farmer Ahsan",
+      user: "You",
       avatar:
         "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726790400&semt=ais_hybrid",
-      text: "Hello everyone! How can I use Crops Armor to improve water management for my rice fields?",
-      type: "other",
-      reactions: { like: 4 },
+      text: "Hi AgroBot! How can I improve water management for my rice fields?",
+      type: "self",
+      messageType: "text",
+      reactions: { like: 0 },
     },
     {
       id: 2,
-      user: "Expert Sadman",
-      avatar:
-        "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726790400&semt=ais_hybrid",
-      text: "Hi Ahsan! You can use the water level sensor data to monitor irrigation needs. Crops Armor will notify you when your fields need watering based on soil moisture levels.",
-      type: "other",
-      reactions: { like: 6 },
-    },
-    {
-      id: 3,
-      user: "Farmer Bina",
-      avatar:
-        "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611716.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726790400&semt=ais_hybrid",
-      text: "Does Crops Armor help with pest control too? My tomatoes are constantly under attack by insects.",
-      type: "other",
-      reactions: { like: 3 },
-    },
-    {
-      id: 4,
-      user: "Expert Ishita",
-      avatar:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM0EWKy7UNg9fKhvoYaJ90d_ZbSD3AjhyVfw&s",
-      text: "Hi Bina! Crops Armor can integrate with pest sensors that detect motion in your fields. It will alert you if any suspicious activity is detected. Additionally, you can monitor the health of your crops using Argo Bot for further insights.",
-      type: "other",
-      reactions: { like: 5 },
-    },
-    {
-      id: 5,
-      user: "Farmer Jamal",
-      avatar:
-        "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726790400&semt=ais_hybrid",
-      text: "Can Crops Armor provide insights on drought conditions for my wheat crops?",
-      type: "other",
+      user: "AgroBot",
+      avatar: "https://img.freepik.com/free-icon/robot_318-413097.jpg",
+      text: "Hello! Use the water level and soil moisture sensors in Crops Armor. The system will notify you when the moisture level is low, helping you schedule irrigation efficiently.",
+      type: "bot",
+      messageType: "text",
       reactions: { like: 2 },
     },
     {
-      id: 6,
-      user: "Expert Sajit",
+      id: 3,
+      user: "You",
       avatar:
-        "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726790400&semt=ais_hybrid",
-      text: "Absolutely, Jamal! Crops Armor uses real-time weather data and soil moisture readings to forecast drought conditions. You'll receive early warnings based on local climate and sensor data, helping you plan ahead.",
-      type: "other",
-      reactions: { like: 4 },
+        "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726790400&semt=ais_hybrid",
+      text: "Here's a picture of my tomato crops. They're under attack by insects, can you help?",
+      type: "self",
+      messageType: "text",
+      reactions: { like: 0 },
+    },
+    {
+      id: 4,
+      user: "You",
+      avatar:
+        "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726790400&semt=ais_hybrid",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7HZ48XAINPXsI_GENlF_f3If2BAcri4J4BQ&s",
+      type: "self",
+      messageType: "image",
+      reactions: { like: 0 },
+    },
+    {
+      id: 5,
+      user: "AgroBot",
+      avatar: "https://img.freepik.com/free-icon/robot_318-413097.jpg",
+      text: "Based on the image, it looks like a common pest attack. Use neem oil spray or biological pest control to mitigate the issue.",
+      type: "bot",
+      messageType: "text",
+      reactions: { like: 3 },
     },
   ]);
 
   const [newMessage, setNewMessage] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleAddMessage = () => {
-    if (newMessage.trim() === "") return;
+    if (newMessage.trim() === "" && !selectedImage) return;
 
     const newEntry = {
       id: messages.length + 1,
@@ -71,11 +67,14 @@ const Forum = () => {
         "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726790400&semt=ais_hybrid", // Placeholder avatar for current user
       text: newMessage,
       type: "self",
+      messageType: selectedImage ? "image" : "text",
+      imageUrl: selectedImage ? URL.createObjectURL(selectedImage) : null,
       reactions: { like: 0 },
     };
 
     setMessages([...messages, newEntry]);
     setNewMessage("");
+    setSelectedImage(null); // Reset the image after sending
   };
 
   const handleReaction = (id) => {
@@ -85,6 +84,10 @@ const Forum = () => {
         : message
     );
     setMessages(updatedMessages);
+  };
+
+  const handleImageUpload = (event) => {
+    setSelectedImage(event.target.files[0]);
   };
 
   return (
@@ -118,15 +121,15 @@ const Forum = () => {
               )}
               <div className="bubble">
                 {message.type === "other" && <strong>{message.user}</strong>}
-                <p>{message.text}</p>
-                <div className="reactions">
-                  <button
-                    className="likeButton"
-                    onClick={() => handleReaction(message.id)}
-                  >
-                    👍 {message.reactions.like}
-                  </button>
-                </div>
+                {message.messageType === "text" ? (
+                  <p>{message.text}</p>
+                ) : (
+                  <img
+                    src={message.imageUrl}
+                    alt="Uploaded content"
+                    className="uploadedImage"
+                  />
+                )}
               </div>
             </div>
           ))}
@@ -140,7 +143,22 @@ const Forum = () => {
             placeholder="Type your message..."
             className="input"
           />
-          <button onClick={handleAddMessage} className="sendButton">
+
+          <label htmlFor="file-upload" className="uploadLabel">
+            <img
+              src="https://img.icons8.com/ios-filled/50/000000/image.png"
+              alt="Upload icon"
+              className="icon"
+            />
+            Upload Image
+          </label>
+          <input id="file-upload" type="file" onChange={handleImageUpload} />
+
+          <button
+            onClick={handleAddMessage}
+            className="sendButton"
+            disabled={!newMessage.trim() && !selectedImage}
+          >
             Send
           </button>
         </div>
@@ -149,4 +167,4 @@ const Forum = () => {
   );
 };
 
-export default Forum;
+export default AgroBot;

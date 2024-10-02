@@ -64,17 +64,22 @@ const Home = () => {
             </button>
           </Link>
           <Link to="/past_stat">
-            <button className="btn btn-outline btn-accent w-full">
+            <button className="btn btn-outline btn-accent w-full mb-4">
               Past Stats
             </button>
           </Link>
+          <Link to="/agro_bot">
+            <button className="btn btn-outline btn-accent w-full mb-4">
+              Agro bot
+            </button>
+          </Link>
           <Link to="/community">
-            <button className="btn btn-outline btn-accent w-full">
+            <button className="btn btn-outline btn-accent w-full mb-4">
               Community
             </button>
           </Link>
           <Link to="/help">
-            <button className="btn btn-outline btn-accent w-full">
+            <button className="btn btn-outline btn-accent w-full mb-4">
               Help Desk
             </button>
           </Link>
