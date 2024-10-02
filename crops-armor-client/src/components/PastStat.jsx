@@ -28,8 +28,6 @@ const PastStat = () => {
   const [temp, setTemp] = useState([]);
   const [wind, setWind] = useState([]);
   const [precipitation, setPrecipitation] = useState([]);
-
-  // const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -110,12 +108,10 @@ const PastStat = () => {
     datasets: humidity.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -153,12 +149,10 @@ const PastStat = () => {
     datasets: moisture.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -196,12 +190,10 @@ const PastStat = () => {
     datasets: temp.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -239,12 +231,10 @@ const PastStat = () => {
     datasets: precipitation.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -282,12 +272,10 @@ const PastStat = () => {
     datasets: wind.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -300,7 +288,7 @@ const PastStat = () => {
       },
       title: {
         display: true,
-        text: "Monthly Wind Speed Data by Year",
+        text: "Monthly Wind Data by Year",
       },
     },
     scales: {
@@ -313,11 +301,12 @@ const PastStat = () => {
       y: {
         title: {
           display: true,
-          text: "Wind Speed",
+          text: "Wind",
         },
       },
     },
   };
+
 
   return (
     <div className="flex flex-col mb-10 md:flex-row bg-gray-100 rounded-2xl">
@@ -325,37 +314,37 @@ const PastStat = () => {
         <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
         {
           <div className="">
-            <Link to="/">
-              <button className="btn btn-outline btn-success w-full mb-4">
-                Current Stats
-              </button>
-            </Link>
-            <Link to="/analysis">
-              <button className="btn btn-outline btn-info w-full mb-4">
-                Analysis
-              </button>
-            </Link>
-            <Link to="/past_stat">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Past Stats
-              </button>
-            </Link>
-            <Link to="/agro_bot">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Agro bot
-              </button>
-            </Link>
-            <Link to="/community">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Community
-              </button>
-            </Link>
-            <Link to="/help">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Help Desk
-              </button>
-            </Link>
-          </div>
+          <Link to="/">
+            <button className="btn btn-outline btn-success w-full mb-4">
+              Current Stats
+            </button>
+          </Link>
+          <Link to="/analysis">
+            <button className="btn btn-outline btn-info w-full mb-4">
+              Analysis
+            </button>
+          </Link>
+          <Link to="/past_stat">
+            <button className="btn btn-outline btn-accent w-full mb-4">
+              Past Stats
+            </button>
+          </Link>
+          <Link to="/agro_bot">
+            <button className="btn btn-outline btn-success w-full mb-4">
+              Agro bot
+            </button>
+          </Link>
+          <Link to="/community">
+            <button className="btn btn-outline btn-info w-full mb-4">
+              Community
+            </button>
+          </Link>
+          <Link to="/help">
+            <button className="btn btn-outline btn-accent w-full mb-4">
+              Help Desk
+            </button>
+          </Link>
+        </div>
         }
       </div>
       <div className="w-full space-y-10">
