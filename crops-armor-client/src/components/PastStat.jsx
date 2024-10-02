@@ -28,8 +28,7 @@ const PastStat = () => {
   const [temp, setTemp] = useState([]);
   const [wind, setWind] = useState([]);
   const [precipitation, setPrecipitation] = useState([]);
-
-  // const [isLoading, setIsLoading] = useState(true);
+  const [ndvi, setNdvi] = useState([]); // State for NDVI data
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -58,12 +57,18 @@ const PastStat = () => {
       return res.json();
     });
 
+    const fetchNdvi = fetch("ndvi.json").then((res) => { // Fetch NDVI data
+      if (!res.ok) throw new Error("Failed to fetch NDVI data");
+      return res.json();
+    });
+
     Promise.all([
       fetchHumidity,
       fetchTemperature,
       fetchWind,
       fetchSoilMoisture,
       fetchPrecipitation,
+      fetchNdvi, // Add NDVI fetch
     ])
       .then(
         ([
@@ -72,12 +77,14 @@ const PastStat = () => {
           windData,
           soilMoistureData,
           precipitationData,
+          ndviData, // Get NDVI data
         ]) => {
           setHumidity(humidityData);
           setTemp(temperatureData);
           setWind(windData);
           setMoisture(soilMoistureData);
           setPrecipitation(precipitationData);
+          setNdvi(ndviData); // Set NDVI data
         }
       )
       .catch((error) => {
@@ -104,18 +111,16 @@ const PastStat = () => {
     "ANN",
   ];
 
-  //Humidity
+  //Humidity graph configuration
   const humidityGraph = {
     labels,
     datasets: humidity.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -147,18 +152,58 @@ const PastStat = () => {
     },
   };
 
-  //Moisture
+  //NDVI graph configuration
+  const ndviGraph = {
+    labels: ndvi.map(data => data.year),
+    datasets: [
+      {
+        label: 'NDVI',
+        data: ndvi.map(data => data.sample_value),
+        borderColor: 'rgba(0, 123, 255, 1)', 
+        backgroundColor: 'rgba(0, 123, 255, 0.2)', 
+        fill: false,
+      },
+    ],
+  };
+  
+
+  const ndviOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "NDVI Data Over Years",
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Year",
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "NDVI Value",
+        },
+      },
+    },
+  };
+
+  //Moisture graph configuration
   const moistureGraph = {
     labels,
     datasets: moisture.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -190,18 +235,16 @@ const PastStat = () => {
     },
   };
 
-  //Temp
+  //Temperature graph configuration
   const tempGraph = {
     labels,
     datasets: temp.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -233,18 +276,16 @@ const PastStat = () => {
     },
   };
 
-  //Precipitation
+  //Precipitation graph configuration
   const precipitationGraph = {
     labels,
     datasets: precipitation.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -276,18 +317,16 @@ const PastStat = () => {
     },
   };
 
-  //Wind
+  //Wind graph configuration
   const windGraph = {
     labels,
     datasets: wind.map((entry, index) => ({
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
-      borderColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 1)`,
-      backgroundColor: `rgba(${Math.floor(255 - index * 10)}, ${Math.floor(
-        index * 25
-      )}, 132, 0.2)`,
+      borderColor:
+        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+      backgroundColor:
+        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -300,7 +339,7 @@ const PastStat = () => {
       },
       title: {
         display: true,
-        text: "Monthly Wind Speed Data by Year",
+        text: "Monthly Wind Data by Year",
       },
     },
     scales: {
@@ -321,9 +360,8 @@ const PastStat = () => {
 
   return (
     <div className="flex flex-col mb-10 md:flex-row bg-gray-100 rounded-2xl">
-      <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
-        <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
-        {
+    <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
+          <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
           <div className="">
             <Link to="/">
               <button className="btn btn-outline btn-success w-full mb-4">
@@ -341,12 +379,12 @@ const PastStat = () => {
               </button>
             </Link>
             <Link to="/agro_bot">
-              <button className="btn btn-outline btn-accent w-full mb-4">
+              <button className="btn btn-outline btn-success w-full mb-4">
                 Agro bot
               </button>
             </Link>
             <Link to="/community">
-              <button className="btn btn-outline btn-accent w-full mb-4">
+              <button className="btn btn-outline btn-info w-full mb-4">
                 Community
               </button>
             </Link>
@@ -356,14 +394,27 @@ const PastStat = () => {
               </button>
             </Link>
           </div>
-        }
-      </div>
+          </div>
       <div className="w-full space-y-10">
-        <Line data={humidityGraph} options={humidityOptions} />
-        <Line data={moistureGraph} options={moistureOptions} />
-        <Line data={tempGraph} options={tempOptions} />
-        <Line data={precipitationGraph} options={precipitationOptions} />
-        <Line data={windGraph} options={windOptions} />
+        <h2 className="text-2xl font-bold text-center">Monthly Statistics</h2>
+        <div>
+          <Line options={humidityOptions} data={humidityGraph} />
+        </div>
+        <div>
+          <Line options={moistureOptions} data={moistureGraph} />
+        </div>
+        <div>
+          <Line options={tempOptions} data={tempGraph} />
+        </div>
+        <div>
+          <Line options={precipitationOptions} data={precipitationGraph} />
+        </div>
+        <div>
+          <Line options={windOptions} data={windGraph} />
+        </div>
+        <div>
+          <Line options={ndviOptions} data={ndviGraph} /> {/* Render NDVI graph */}
+        </div>
       </div>
     </div>
   );

@@ -189,12 +189,12 @@ const Analysis = () => {
               </button>
             </Link>
             <Link to="/agro_bot">
-              <button className="btn btn-outline btn-accent w-full mb-4">
+              <button className="btn btn-outline btn-success w-full mb-4">
                 Agro bot
               </button>
             </Link>
             <Link to="/community">
-              <button className="btn btn-outline btn-accent w-full mb-4">
+              <button className="btn btn-outline btn-info w-full mb-4">
                 Community
               </button>
             </Link>
