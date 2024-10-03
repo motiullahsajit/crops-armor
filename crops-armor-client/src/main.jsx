@@ -13,6 +13,7 @@ import Community from "./components/Community";
 import HelpDesk from "./components/HelpDesk";
 import AgroBotChat from "./components/AgroBotChat";
 import Profile from "./components/Profile";
+import "../i18n";
 
 const router = createBrowserRouter([
   {

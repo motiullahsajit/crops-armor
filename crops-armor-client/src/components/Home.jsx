@@ -16,7 +16,10 @@ import {
   FaQuestionCircle,
 } from "react-icons/fa";
 
+import { useTranslation } from "react-i18next";
+
 const Home = () => {
+  const { t } = useTranslation();
   const [sensorData, setSensorData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -85,51 +88,53 @@ const Home = () => {
     <div className="flex flex-col mb-10 md:flex-row bg-gray-100 rounded-2xl">
       {/* Sidebar */}
       <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
-        <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
+        <h2 className="text-3xl font-bold mb-5 text-center">
+          {t("home.welcome")}
+        </h2>
         <div>
           <Link to="/" className="block mb-4">
             <button className="flex items-center btn btn-outline btn-success w-full">
-              <FaChartBar className="mr-2 text-lg" /> Current Stats
+              <FaChartBar className="mr-2 text-lg" /> {t("home.currentStats")}
             </button>
           </Link>
 
           {/* Analysis */}
           <Link to="/analysis" className="block mb-4">
             <button className="flex items-center btn btn-outline btn-info w-full">
-              <FaSearch className="mr-2 text-lg" /> Analysis
+              <FaSearch className="mr-2 text-lg" /> {t("home.analysis")}
             </button>
           </Link>
 
           {/* Past Stats */}
           <Link to="/past_stat" className="block mb-4">
             <button className="flex items-center btn btn-outline btn-accent w-full">
-              <FaHistory className="mr-2 text-lg" /> Past Stats
+              <FaHistory className="mr-2 text-lg" /> {t("home.pastStats")}
             </button>
           </Link>
 
           {/* Agro Bot */}
           <Link to="/agro_bot" className="block mb-4">
             <button className="flex items-center btn btn-outline btn-success w-full">
-              <FaRobot className="mr-2 text-lg" /> Agro Bot
+              <FaRobot className="mr-2 text-lg" /> {t("home.agroBot")}
             </button>
           </Link>
 
           {/* Community */}
           <Link to="/community" className="block mb-4">
             <button className="flex items-center btn btn-outline btn-info w-full">
-              <FaUsers className="mr-2 text-lg" /> Community
+              <FaUsers className="mr-2 text-lg" /> {t("home.community")}
             </button>
           </Link>
 
           {/* Help Desk */}
           <Link to="/help" className="block mb-4">
             <button className="flex items-center btn btn-outline btn-accent w-full">
-              <FaQuestionCircle className="mr-2 text-lg" /> Help Desk
+              <FaQuestionCircle className="mr-2 text-lg" /> {t("home.helpDesk")}
             </button>
           </Link>
           <Link to="/profile" className="block">
             <button className="flex items-center btn btn-outline btn-accent w-full">
-              <FaUser className="mr-2 text-lg" /> Profile
+              <FaUser className="mr-2 text-lg" /> {t("home.profile")}
             </button>
           </Link>
         </div>
@@ -156,7 +161,7 @@ const Home = () => {
               <div className="flex items-center bg-gradient-to-br from-green-100 to-green-200 p-4 rounded-lg shadow-md">
                 <div className="flex flex-col">
                   <h3 className="text-xl font-semibold text-green-800">
-                    Wet Condition
+                    {t("home.wetConditions")}
                   </h3>
                   <p className="text-lg font-bold text-green-900">
                     {locationData.wet_conditions}
@@ -171,7 +176,7 @@ const Home = () => {
               <div className="flex items-center bg-gradient-to-br from-yellow-100 to-yellow-200 p-4 rounded-lg shadow-md">
                 <div className="flex flex-col">
                   <h3 className="text-xl font-semibold text-yellow-800">
-                    Drought Severity
+                    {t("home.droughtSeverity")}
                   </h3>
                   <p className="text-lg font-bold text-yellow-900">
                     {locationData.drought_severity}
@@ -186,7 +191,7 @@ const Home = () => {
               <div className="flex items-center bg-gradient-to-br from-red-100 to-red-200 p-4 rounded-lg shadow-md">
                 <div className="flex flex-col">
                   <h3 className="text-xl font-semibold text-red-800">
-                    Flood Impact
+                    {t("home.floodImpact")}
                   </h3>
                   <p className="text-lg font-bold text-red-900">
                     {locationData.flood_impact.impact}
@@ -201,7 +206,7 @@ const Home = () => {
               <div className="flex items-center bg-gradient-to-br from-purple-100 to-purple-200 p-4 rounded-lg shadow-md">
                 <div className="flex flex-col">
                   <h3 className="text-xl font-semibold text-purple-800">
-                    Best Crops
+                    {t("home.bestCrops")}
                   </h3>
                   <p className="text-lg font-bold text-purple-900">
                     Barley, Peanut, Wheat
@@ -227,22 +232,24 @@ const Home = () => {
         {/* Weather Data Section */}
         {firstData && (
           <>
-            <h2 className="text-3xl font-bold my-5">Device Data</h2>
+            <h2 className="text-3xl font-bold my-5">{t("home.deviceData")}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-6 bg-gray-50 mt-6">
               {/* Weather Data */}
               <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 p-4 rounded-md shadow-md transition-transform hover:scale-105">
                 <h2 className="text-lg font-semibold text-gray-700 mb-2 text-center">
-                  Weather Data
+                  {t("home.weatherData")}
                 </h2>
                 <div className="flex justify-between items-center">
                   <div className="text-center">
-                    <p className="text-sm text-gray-500">🌡️ Temp</p>
+                    <p className="text-sm text-gray-500">🌡️ {t("home.temp")}</p>
                     <p className="text-2xl font-bold text-teal-900">
                       {firstData.temperature}°C
                     </p>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-gray-500">💧 Humidity</p>
+                    <p className="text-sm text-gray-500">
+                      💧 {t("home.humidity")}
+                    </p>
                     <p className="text-2xl font-bold text-blue-900">
                       {firstData.humidity}%
                     </p>
@@ -253,10 +260,12 @@ const Home = () => {
               {/* Soil Data */}
               <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-md shadow-md transition-transform hover:scale-105">
                 <h2 className="text-lg font-semibold text-gray-700 mb-2 text-center">
-                  Soil Data
+                  {t("home.soilData")}
                 </h2>
                 <div className="text-center">
-                  <p className="text-sm text-gray-500">🌱 Moisture</p>
+                  <p className="text-sm text-gray-500">
+                    🌱 {t("home.moisture")}
+                  </p>
                   <p className="text-2xl font-bold text-green-900">
                     {firstData.soilMoisture}
                   </p>
@@ -266,10 +275,12 @@ const Home = () => {
               {/* Water Data */}
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-md shadow-md transition-transform hover:scale-105">
                 <h2 className="text-lg font-semibold text-gray-700 mb-2 text-center">
-                  Water Data
+                  {t("home.waterData")}
                 </h2>
                 <div className="text-center">
-                  <p className="text-sm text-gray-500">🌊 Water Level</p>
+                  <p className="text-sm text-gray-500">
+                    🌊 {t("home.waterLevel")}
+                  </p>
                   <p className="text-2xl font-bold text-blue-900">
                     {firstData.waterLevel}
                   </p>
@@ -279,17 +290,21 @@ const Home = () => {
               {/* Pest and Animal Data */}
               <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-md shadow-md transition-transform hover:scale-105">
                 <h2 className="text-lg font-semibold text-gray-700 mb-2 text-center">
-                  Pest & Animal Data
+                  {t("home.pestData")}
                 </h2>
                 <div className="flex justify-between items-center">
                   <div className="text-center">
-                    <p className="text-sm text-gray-500">🔊 Sound Freq</p>
+                    <p className="text-sm text-gray-500">
+                      🔊 {t("home.soundFreq")}
+                    </p>
                     <p className="text-2xl font-bold text-red-900">
                       {firstData.soundFrequency}Hz
                     </p>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-gray-500">🐾 Animal</p>
+                    <p className="text-sm text-gray-500">
+                      🐾 {t("home.animal")}
+                    </p>
                     <p className="text-2xl font-bold text-yellow-900">
                       {firstData.pirValue === 1 ? "Detected" : "None"}
                     </p>
@@ -301,18 +316,24 @@ const Home = () => {
             {/* Table for Other Data */}
             {sensorData.length > 1 && (
               <div className="mt-10">
-                <h2 className="text-3xl font-bold mb-5">Previous Data</h2>
+                <h2 className="text-3xl font-bold mb-5">
+                  {t("home.previousData")}
+                </h2>
                 <div className="overflow-x-auto">
                   <table className="table-auto w-full bg-white shadow-md rounded-lg">
                     <thead>
                       <tr>
-                        <th className="px-4 py-2">Index</th>
-                        <th className="px-4 py-2">Temperature</th>
-                        <th className="px-4 py-2">Humidity</th>
-                        <th className="px-4 py-2">Moisture</th>
-                        <th className="px-4 py-2">Water Level</th>
-                        <th className="px-4 py-2">Sound Frequency</th>
-                        <th className="px-4 py-2">Animal Presence</th>
+                        <th className="px-4 py-2">{t("home.index")}</th>
+                        <th className="px-4 py-2">{t("home.temperature")}</th>
+                        <th className="px-4 py-2">{t("home.humidity")}</th>
+                        <th className="px-4 py-2">{t("home.moisture")}</th>
+                        <th className="px-4 py-2">{t("home.waterLevel")}</th>
+                        <th className="px-4 py-2">
+                          {t("home.soundFrequency")}
+                        </th>
+                        <th className="px-4 py-2">
+                          {t("home.animalPresence")}
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -354,10 +375,10 @@ const Home = () => {
                     onClick={handlePrev}
                     disabled={currentPage === 1}
                   >
-                    Previous
+                    {t("home.previous")}
                   </button>
                   <span className="self-center text-lg">
-                    Page {currentPage} of {totalPages}
+                    {t("home.page")} {currentPage} of {totalPages}
                   </span>
                   <button
                     className={`btn ${
@@ -368,7 +389,7 @@ const Home = () => {
                     onClick={handleNext}
                     disabled={currentPage === totalPages}
                   >
-                    Next
+                    {t("home.next")}
                   </button>
                 </div>
               </div>
