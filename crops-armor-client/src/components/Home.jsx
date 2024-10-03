@@ -1,7 +1,20 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { FaMapMarkerAlt } from "react-icons/fa"; // Import location icon
+import {
+  FaMapMarkerAlt,
+  FaSeedling,
+  FaSun,
+  FaTint,
+  FaUser,
+  FaWater,
+  FaChartBar,
+  FaSearch,
+  FaHistory,
+  FaRobot,
+  FaUsers,
+  FaQuestionCircle,
+} from "react-icons/fa";
 
 const Home = () => {
   const [sensorData, setSensorData] = useState([]);
@@ -73,131 +86,215 @@ const Home = () => {
       {/* Sidebar */}
       <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
         <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
-        <div className="">
-            <Link to="/">
-              <button className="btn btn-outline btn-success w-full mb-4">
-                Current Stats
-              </button>
-            </Link>
-            <Link to="/analysis">
-              <button className="btn btn-outline btn-info w-full mb-4">
-                Analysis
-              </button>
-            </Link>
-            <Link to="/past_stat">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Past Stats
-              </button>
-            </Link>
-            <Link to="/agro_bot">
-              <button className="btn btn-outline btn-success w-full mb-4">
-                Agro bot
-              </button>
-            </Link>
-            <Link to="/community">
-              <button className="btn btn-outline btn-info w-full mb-4">
-                Community
-              </button>
-            </Link>
-            <Link to="/help">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Help Desk
-              </button>
-            </Link>
-          </div>
+        <div>
+          <Link to="/" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-success w-full">
+              <FaChartBar className="mr-2 text-lg" /> Current Stats
+            </button>
+          </Link>
+
+          {/* Analysis */}
+          <Link to="/analysis" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-info w-full">
+              <FaSearch className="mr-2 text-lg" /> Analysis
+            </button>
+          </Link>
+
+          {/* Past Stats */}
+          <Link to="/past_stat" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-accent w-full">
+              <FaHistory className="mr-2 text-lg" /> Past Stats
+            </button>
+          </Link>
+
+          {/* Agro Bot */}
+          <Link to="/agro_bot" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-success w-full">
+              <FaRobot className="mr-2 text-lg" /> Agro Bot
+            </button>
+          </Link>
+
+          {/* Community */}
+          <Link to="/community" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-info w-full">
+              <FaUsers className="mr-2 text-lg" /> Community
+            </button>
+          </Link>
+
+          {/* Help Desk */}
+          <Link to="/help" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-accent w-full">
+              <FaQuestionCircle className="mr-2 text-lg" /> Help Desk
+            </button>
+          </Link>
+          <Link to="/profile" className="block">
+            <button className="flex items-center btn btn-outline btn-accent w-full">
+              <FaUser className="mr-2 text-lg" /> Profile
+            </button>
+          </Link>
+        </div>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 p-5 md:p-10">
         {/* Location-based Data Section */}
-        <div className="flex gap-6 justify-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-10">
-          <div className="bg-blue-200 p-6 rounded-lg shadow-md flex flex-col items-center">
-            <FaMapMarkerAlt className="text-red-500 text-5xl mb-2" />
-            <h2 className="text-2xl font-extrabold text-center">
-              {locationData.city}, {locationData.country}
-            </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 bg-gray-50">
+          {/* Left Section: Location and Data Cards */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Main Location Section */}
+            <div className="flex items-center bg-white p-6 rounded-lg shadow-md">
+              {/* Location Data */}
+              <FaMapMarkerAlt className="text-red-500 text-6xl mr-4" />
+              <h2 className="text-3xl font-extrabold text-gray-800">
+                {locationData.city}, {locationData.country}
+              </h2>
+            </div>
+
+            {/* Data Cards Section */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Wet Condition */}
+              <div className="flex items-center bg-gradient-to-br from-green-100 to-green-200 p-4 rounded-lg shadow-md">
+                <div className="flex flex-col">
+                  <h3 className="text-xl font-semibold text-green-800">
+                    Wet Condition
+                  </h3>
+                  <p className="text-lg font-bold text-green-900">
+                    {locationData.wet_conditions}
+                  </p>
+                </div>
+                <div className="ml-auto">
+                  <FaTint className="text-green-600 text-4xl" />
+                </div>
+              </div>
+
+              {/* Drought Severity */}
+              <div className="flex items-center bg-gradient-to-br from-yellow-100 to-yellow-200 p-4 rounded-lg shadow-md">
+                <div className="flex flex-col">
+                  <h3 className="text-xl font-semibold text-yellow-800">
+                    Drought Severity
+                  </h3>
+                  <p className="text-lg font-bold text-yellow-900">
+                    {locationData.drought_severity}
+                  </p>
+                </div>
+                <div className="ml-auto">
+                  <FaSun className="text-yellow-600 text-4xl" />
+                </div>
+              </div>
+
+              {/* Flood Impact */}
+              <div className="flex items-center bg-gradient-to-br from-red-100 to-red-200 p-4 rounded-lg shadow-md">
+                <div className="flex flex-col">
+                  <h3 className="text-xl font-semibold text-red-800">
+                    Flood Impact
+                  </h3>
+                  <p className="text-lg font-bold text-red-900">
+                    {locationData.flood_impact.impact}
+                  </p>
+                </div>
+                <div className="ml-auto">
+                  <FaWater className="text-red-600 text-4xl" />
+                </div>
+              </div>
+
+              {/* Best Crops */}
+              <div className="flex items-center bg-gradient-to-br from-purple-100 to-purple-200 p-4 rounded-lg shadow-md">
+                <div className="flex flex-col">
+                  <h3 className="text-xl font-semibold text-purple-800">
+                    Best Crops
+                  </h3>
+                  <p className="text-lg font-bold text-purple-900">
+                    Barley, Peanut, Wheat
+                  </p>
+                </div>
+                <div className="ml-auto">
+                  <FaSeedling className="text-purple-600 text-4xl" />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="bg-green-200 p-6 rounded-lg shadow-md flex flex-col items-center">
-            <h3 className="text-xl font-semibold mb-2">Wet Condition</h3>
-            <p className="text-lg">{locationData.wet_conditions}</p>
-          </div>
-          <div className="bg-yellow-200 p-6 rounded-lg shadow-md flex flex-col items-center">
-            <h3 className="text-xl font-semibold mb-2">Drought Severity</h3>
-            <p className="text-lg">{locationData.drought_severity}</p>
-          </div>
-          <div className="bg-red-200 p-6 rounded-lg shadow-md flex flex-col items-center">
-            <h3 className="text-xl font-semibold mb-2">Flood Impact</h3>
-            <p className="text-lg">{locationData.flood_impact.impact}</p>
-          </div>
-          <div className="bg-purple-200 p-6 rounded-lg shadow-md flex flex-col items-center">
-            <h3 className="text-xl font-semibold mb-2">Best Crops</h3>
-            <p className="text-lg">Barley, Peanut, Wheat</p>
-          </div>
-          </div>
-          
-          {/* Image Section */}
-          <div className="">
+
+          {/* Right Section: Crop Calendar Image */}
+          <div className="flex justify-center items-center bg-white p-6 rounded-lg shadow-md">
             <img
-              src="https://ipad.fas.usda.gov/countrysummary/images/BG/cropcalendar/bg_bg_calendar.png" // Replace with your image URL
-              alt="Descriptive Alt Text"
+              src="https://ipad.fas.usda.gov/countrysummary/images/BG/cropcalendar/bg_bg_calendar.png"
+              alt="Crop Calendar"
               className="w-full h-auto rounded-lg shadow-md"
             />
           </div>
         </div>
 
-
         {/* Weather Data Section */}
         {firstData && (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              <h2 className="text-2xl font-extrabold mb-5 col-span-full border-4 border-gray-400 p-2 rounded-xl">
-                Weather Data
-              </h2>
-              <div className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                <h2 className="text-lg font-semibold mb-1">Temperature</h2>
-                <p className="text-2xl">{firstData.temperature}°C</p>
+            <h2 className="text-3xl font-bold my-5">Device Data</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-6 bg-gray-50 mt-6">
+              {/* Weather Data */}
+              <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 p-4 rounded-md shadow-md transition-transform hover:scale-105">
+                <h2 className="text-lg font-semibold text-gray-700 mb-2 text-center">
+                  Weather Data
+                </h2>
+                <div className="flex justify-between items-center">
+                  <div className="text-center">
+                    <p className="text-sm text-gray-500">🌡️ Temp</p>
+                    <p className="text-2xl font-bold text-teal-900">
+                      {firstData.temperature}°C
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm text-gray-500">💧 Humidity</p>
+                    <p className="text-2xl font-bold text-blue-900">
+                      {firstData.humidity}%
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                <h2 className="text-lg font-semibold mb-1">Humidity</h2>
-                <p className="text-2xl">{firstData.humidity}%</p>
-              </div>
-            </div>
 
-            {/* Soil Data Section */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              <h2 className="text-2xl font-extrabold mb-5 col-span-full border-4 border-yellow-400 p-2 rounded-xl">
-                Soil Data
-              </h2>
-              <div className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                <h2 className="text-lg font-semibold mb-1">Moisture</h2>
-                <p className="text-2xl">{firstData.soilMoisture}</p>
+              {/* Soil Data */}
+              <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-md shadow-md transition-transform hover:scale-105">
+                <h2 className="text-lg font-semibold text-gray-700 mb-2 text-center">
+                  Soil Data
+                </h2>
+                <div className="text-center">
+                  <p className="text-sm text-gray-500">🌱 Moisture</p>
+                  <p className="text-2xl font-bold text-green-900">
+                    {firstData.soilMoisture}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Water Data Section */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              <h2 className="text-2xl font-extrabold mb-5 col-span-full border-4 border-blue-400 p-2 rounded-xl">
-                Water Data
-              </h2>
-              <div className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                <h2 className="text-lg font-semibold mb-1">Water Level</h2>
-                <p className="text-2xl">{firstData.waterLevel}</p>
+              {/* Water Data */}
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-md shadow-md transition-transform hover:scale-105">
+                <h2 className="text-lg font-semibold text-gray-700 mb-2 text-center">
+                  Water Data
+                </h2>
+                <div className="text-center">
+                  <p className="text-sm text-gray-500">🌊 Water Level</p>
+                  <p className="text-2xl font-bold text-blue-900">
+                    {firstData.waterLevel}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Pest Data Section */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              <h2 className="text-2xl font-extrabold mb-5 col-span-full border-4 border-red-400 p-2 rounded-xl">
-                Pest and Animal Data
-              </h2>
-              <div className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                <h2 className="text-lg font-semibold mb-1">Sound Frequency</h2>
-                <p className="text-2xl">{firstData.soundFrequency}Hz</p>
-              </div>
-              <div className="bg-white p-4 rounded-lg shadow-md flex flex-col items-center">
-                <h2 className="text-lg font-semibold mb-1">Animal Presence</h2>
-                <p className="text-2xl">{firstData.pirValue === 1 ? "Detected" : "None"}</p>
+              {/* Pest and Animal Data */}
+              <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-md shadow-md transition-transform hover:scale-105">
+                <h2 className="text-lg font-semibold text-gray-700 mb-2 text-center">
+                  Pest & Animal Data
+                </h2>
+                <div className="flex justify-between items-center">
+                  <div className="text-center">
+                    <p className="text-sm text-gray-500">🔊 Sound Freq</p>
+                    <p className="text-2xl font-bold text-red-900">
+                      {firstData.soundFrequency}Hz
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm text-gray-500">🐾 Animal</p>
+                    <p className="text-2xl font-bold text-yellow-900">
+                      {firstData.pirValue === 1 ? "Detected" : "None"}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -221,13 +318,25 @@ const Home = () => {
                     <tbody>
                       {currentRows.map((data, index) => (
                         <tr key={index}>
-                          <td className="border px-4 py-2">{index + indexOfFirstRow + 1}</td>
-                          <td className="border px-4 py-2">{data.temperature}°C</td>
+                          <td className="border px-4 py-2">
+                            {index + indexOfFirstRow + 1}
+                          </td>
+                          <td className="border px-4 py-2">
+                            {data.temperature}°C
+                          </td>
                           <td className="border px-4 py-2">{data.humidity}%</td>
-                          <td className="border px-4 py-2">{data.soilMoisture}</td>
-                          <td className="border px-4 py-2">{data.waterLevel}</td>
-                          <td className="border px-4 py-2">{data.soundFrequency}Hz</td>
-                          <td className="border px-4 py-2">{data.pirValue ? "Yes" : "No"}</td>
+                          <td className="border px-4 py-2">
+                            {data.soilMoisture}
+                          </td>
+                          <td className="border px-4 py-2">
+                            {data.waterLevel}
+                          </td>
+                          <td className="border px-4 py-2">
+                            {data.soundFrequency}Hz
+                          </td>
+                          <td className="border px-4 py-2">
+                            {data.pirValue ? "Yes" : "No"}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -237,7 +346,11 @@ const Home = () => {
                 {/* Pagination Controls */}
                 <div className="flex justify-between mt-5">
                   <button
-                    className={`btn ${currentPage === 1 ? "btn-disabled" : "btn btn-outline btn-success"}`}
+                    className={`btn ${
+                      currentPage === 1
+                        ? "btn-disabled"
+                        : "btn btn-outline btn-success"
+                    }`}
                     onClick={handlePrev}
                     disabled={currentPage === 1}
                   >
@@ -247,7 +360,11 @@ const Home = () => {
                     Page {currentPage} of {totalPages}
                   </span>
                   <button
-                    className={`btn ${currentPage === totalPages ? "btn-disabled" : "btn btn-outline btn-success"}`}
+                    className={`btn ${
+                      currentPage === totalPages
+                        ? "btn-disabled"
+                        : "btn btn-outline btn-success"
+                    }`}
                     onClick={handleNext}
                     disabled={currentPage === totalPages}
                   >

@@ -12,6 +12,7 @@ import Analysis from "./components/Analysis";
 import Community from "./components/Community";
 import HelpDesk from "./components/HelpDesk";
 import AgroBotChat from "./components/AgroBotChat";
+import Profile from "./components/Profile";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <HelpDesk />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
           </PrivateRoute>
         ),
       },

@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
 import Forum from "./Forum/Forum";
+import {
+  FaUser,
+  FaChartBar,
+  FaSearch,
+  FaHistory,
+  FaRobot,
+  FaUsers,
+  FaQuestionCircle,
+} from "react-icons/fa";
 
 const Community = () => {
   return (
@@ -7,39 +16,55 @@ const Community = () => {
       {/* Sidebar */}
       <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
         <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
-        <div className="">
-            <Link to="/">
-              <button className="btn btn-outline btn-success w-full mb-4">
-                Current Stats
-              </button>
-            </Link>
-            <Link to="/analysis">
-              <button className="btn btn-outline btn-info w-full mb-4">
-                Analysis
-              </button>
-            </Link>
-            <Link to="/past_stat">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Past Stats
-              </button>
-            </Link>
-            <Link to="/agro_bot">
-              <button className="btn btn-outline btn-success w-full mb-4">
-                Agro bot
-              </button>
-            </Link>
-            <Link to="/community">
-              <button className="btn btn-outline btn-info w-full mb-4">
-                Community
-              </button>
-            </Link>
-            <Link to="/help">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Help Desk
-              </button>
-            </Link>
-          </div>
+        <div>
+          <Link to="/" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-success w-full">
+              <FaChartBar className="mr-2 text-lg" /> Current Stats
+            </button>
+          </Link>
+
+          {/* Analysis */}
+          <Link to="/analysis" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-info w-full">
+              <FaSearch className="mr-2 text-lg" /> Analysis
+            </button>
+          </Link>
+
+          {/* Past Stats */}
+          <Link to="/past_stat" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-accent w-full">
+              <FaHistory className="mr-2 text-lg" /> Past Stats
+            </button>
+          </Link>
+
+          {/* Agro Bot */}
+          <Link to="/agro_bot" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-success w-full">
+              <FaRobot className="mr-2 text-lg" /> Agro Bot
+            </button>
+          </Link>
+
+          {/* Community */}
+          <Link to="/community" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-info w-full">
+              <FaUsers className="mr-2 text-lg" /> Community
+            </button>
+          </Link>
+
+          {/* Help Desk */}
+          <Link to="/help" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-accent w-full">
+              <FaQuestionCircle className="mr-2 text-lg" /> Help Desk
+            </button>
+          </Link>
+          <Link to="/profile" className="block">
+            <button className="flex items-center btn btn-outline btn-accent w-full">
+              <FaUser className="mr-2 text-lg" /> Profile
+            </button>
+          </Link>
+        </div>
       </div>
+
       {/* Forum Component */}
       <div className="w-full md:w-4/6 lg:w-4/5">
         <Forum />

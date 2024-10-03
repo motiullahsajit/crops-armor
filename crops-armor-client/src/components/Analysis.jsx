@@ -2,6 +2,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import {
+  FaUser,
+  FaChartBar,
+  FaSearch,
+  FaHistory,
+  FaRobot,
+  FaUsers,
+  FaQuestionCircle,
+} from "react-icons/fa";
+
 // Define the actual pest sound frequency data
 const PEST_DATA = {
   Aphids: { min: 60, max: 80 },
@@ -167,169 +177,153 @@ const Analysis = () => {
   const { insights, floodOrDroughtRisk } = analysisData || {};
 
   return (
-    <div className="">
+    <>
       <div className="flex flex-col mb-10 md:flex-row bg-gray-100 rounded-2xl">
         {/* Sidebar */}
         <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
           <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
-          <div className="">
-            <Link to="/">
-              <button className="btn btn-outline btn-success w-full mb-4">
-                Current Stats
+          <div>
+            <Link to="/" className="block mb-4">
+              <button className="flex items-center btn btn-outline btn-success w-full">
+                <FaChartBar className="mr-2 text-lg" /> Current Stats
               </button>
             </Link>
-            <Link to="/analysis">
-              <button className="btn btn-outline btn-info w-full mb-4">
-                Analysis
+
+            {/* Analysis */}
+            <Link to="/analysis" className="block mb-4">
+              <button className="flex items-center btn btn-outline btn-info w-full">
+                <FaSearch className="mr-2 text-lg" /> Analysis
               </button>
             </Link>
-            <Link to="/past_stat">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Past Stats
+
+            {/* Past Stats */}
+            <Link to="/past_stat" className="block mb-4">
+              <button className="flex items-center btn btn-outline btn-accent w-full">
+                <FaHistory className="mr-2 text-lg" /> Past Stats
               </button>
             </Link>
-            <Link to="/agro_bot">
-              <button className="btn btn-outline btn-success w-full mb-4">
-                Agro bot
+
+            {/* Agro Bot */}
+            <Link to="/agro_bot" className="block mb-4">
+              <button className="flex items-center btn btn-outline btn-success w-full">
+                <FaRobot className="mr-2 text-lg" /> Agro Bot
               </button>
             </Link>
-            <Link to="/community">
-              <button className="btn btn-outline btn-info w-full mb-4">
-                Community
+
+            {/* Community */}
+            <Link to="/community" className="block mb-4">
+              <button className="flex items-center btn btn-outline btn-info w-full">
+                <FaUsers className="mr-2 text-lg" /> Community
               </button>
             </Link>
-            <Link to="/help">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Help Desk
+
+            {/* Help Desk */}
+            <Link to="/help" className="block mb-4">
+              <button className="flex items-center btn btn-outline btn-accent w-full">
+                <FaQuestionCircle className="mr-2 text-lg" /> Help Desk
+              </button>
+            </Link>
+            <Link to="/profile" className="block">
+              <button className="flex items-center btn btn-outline btn-accent w-full">
+                <FaUser className="mr-2 text-lg" /> Profile
               </button>
             </Link>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-5 md:p-10">
+        <div className="flex-1 p-6 md:p-12 bg-gray-50 min-h-screen">
           {/* Risk Assessment Section */}
           {floodOrDroughtRisk && (
             <div
-              className={`mb-8 p-5 rounded-lg shadow-lg ${
+              className={`mb-8 p-6 rounded-lg shadow-xl ${
                 floodOrDroughtRisk.includes("High")
-                  ? "bg-red-200 text-red-800"
-                  : "bg-yellow-200 text-yellow-800"
+                  ? "bg-red-100 border-l-4 border-red-600 text-red-800"
+                  : "bg-yellow-100 border-l-4 border-yellow-600 text-yellow-800"
               }`}
             >
-              <h2 className="text-2xl font-semibold mb-2">
+              <h2 className="text-3xl font-bold mb-3 flex items-center gap-2">
                 ⚠️ Risk Assessment
               </h2>
-              <p className="text-xl">{floodOrDroughtRisk}</p>
+              <p className="text-lg">{floodOrDroughtRisk}</p>
             </div>
           )}
 
           {/* Field Recommendations Section */}
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-3xl font-bold mb-5">
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <h2 className="text-4xl font-bold mb-6 text-gray-800">
               🌾 Field Recommendations
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {sensorData ? (
                 getFieldAdvice(sensorData).map((item, index) => (
                   <div
                     key={index}
-                    className={`${item.bgColor} p-5 rounded-lg shadow-md flex flex-col items-center`}
+                    className={`p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ${item.bgColor} flex flex-col items-center`}
                   >
-                    <span className="text-4xl mb-3">{item.icon}</span>
-                    <h2 className="text-xl font-semibold">{item.title}</h2>
-                    <p className="text-lg text-center mt-2">{item.message}</p>
+                    <span className="text-5xl mb-4">{item.icon}</span>
+                    <h3 className="text-2xl font-semibold text-gray-700">
+                      {item.title}
+                    </h3>
+                    <p className="text-lg text-gray-600 mt-3 text-center">
+                      {item.message}
+                    </p>
                   </div>
                 ))
               ) : (
-                <p>No sensor data available to generate recommendations.</p>
+                <p className="text-center text-gray-500">
+                  No sensor data available to generate recommendations.
+                </p>
               )}
             </div>
           </div>
 
           {/* Predictions for Next Day Section */}
           {insights && (
-            <div className="mt-10">
-              <h2 className="text-3xl font-bold mb-5">
+            <div className="mt-12">
+              <h2 className="text-4xl font-bold mb-8 text-gray-800">
                 📈 Predictions for Next Day
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                  <h2 className="text-2xl font-semibold mb-4">
-                    Humidity Trend
-                  </h2>
-                  <p
-                    className={`text-3xl ${
-                      insights.humidityTrend > 0
-                        ? "text-red-600"
-                        : "text-green-600"
-                    }`}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Individual Prediction Card */}
+                {[
+                  { label: "Humidity Trend", value: insights.humidityTrend },
+                  {
+                    label: "Precipitation Trend",
+                    value: insights.precipitationTrend,
+                  },
+                  {
+                    label: "Soil Moisture Trend",
+                    value: insights.soilMoistureTrend,
+                  },
+                  {
+                    label: "Temperature Trend",
+                    value: insights.temperatureTrend,
+                  },
+                  { label: "Wind Trend", value: insights.windTrend },
+                ].map((insight, i) => (
+                  <div
+                    key={i}
+                    className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
                   >
-                    {insights.humidityTrend.toFixed(2)}
-                  </p>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                  <h2 className="text-2xl font-semibold mb-4">
-                    Precipitation Trend
-                  </h2>
-                  <p
-                    className={`text-3xl ${
-                      insights.precipitationTrend > 0
-                        ? "text-red-600"
-                        : "text-green-600"
-                    }`}
-                  >
-                    {insights.precipitationTrend.toFixed(2)}
-                  </p>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                  <h2 className="text-2xl font-semibold mb-4">
-                    Soil Moisture Trend
-                  </h2>
-                  <p
-                    className={`text-3xl ${
-                      insights.soilMoistureTrend > 0
-                        ? "text-red-600"
-                        : "text-green-600"
-                    }`}
-                  >
-                    {insights.soilMoistureTrend.toFixed(2)}
-                  </p>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                  <h2 className="text-2xl font-semibold mb-4">
-                    Temperature Trend
-                  </h2>
-                  <p
-                    className={`text-3xl ${
-                      insights.temperatureTrend > 0
-                        ? "text-red-600"
-                        : "text-green-600"
-                    }`}
-                  >
-                    {insights.temperatureTrend.toFixed(2)}
-                  </p>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                  <h2 className="text-2xl font-semibold mb-4">Wind Trend</h2>
-                  <p
-                    className={`text-3xl ${
-                      insights.windTrend > 0 ? "text-red-600" : "text-green-600"
-                    }`}
-                  >
-                    {insights.windTrend.toFixed(2)}
-                  </p>
-                </div>
+                    <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+                      {insight.label}
+                    </h3>
+                    <p
+                      className={`text-4xl font-bold ${
+                        insight.value > 0 ? "text-red-500" : "text-green-500"
+                      }`}
+                    >
+                      {insight.value.toFixed(2)}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

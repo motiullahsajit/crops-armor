@@ -12,6 +12,16 @@ import {
 } from "chart.js";
 import { Link } from "react-router-dom";
 
+import {
+  FaUser,
+  FaChartBar,
+  FaSearch,
+  FaHistory,
+  FaRobot,
+  FaUsers,
+  FaQuestionCircle,
+} from "react-icons/fa";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -57,7 +67,8 @@ const PastStat = () => {
       return res.json();
     });
 
-    const fetchNdvi = fetch("ndvi.json").then((res) => { // Fetch NDVI data
+    const fetchNdvi = fetch("ndvi.json").then((res) => {
+      // Fetch NDVI data
       if (!res.ok) throw new Error("Failed to fetch NDVI data");
       return res.json();
     });
@@ -118,9 +129,17 @@ const PastStat = () => {
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
       borderColor:
-        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 1)"
+          : index === 1
+          ? "rgba(40, 167, 69, 1)"
+          : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
       backgroundColor:
-        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 0.2)"
+          : index === 1
+          ? "rgba(40, 167, 69, 0.2)"
+          : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -154,18 +173,17 @@ const PastStat = () => {
 
   //NDVI graph configuration
   const ndviGraph = {
-    labels: ndvi.map(data => data.year),
+    labels: ndvi.map((data) => data.year),
     datasets: [
       {
-        label: 'NDVI',
-        data: ndvi.map(data => data.sample_value),
-        borderColor: 'rgba(0, 123, 255, 1)', 
-        backgroundColor: 'rgba(0, 123, 255, 0.2)', 
+        label: "NDVI",
+        data: ndvi.map((data) => data.sample_value),
+        borderColor: "rgba(0, 123, 255, 1)",
+        backgroundColor: "rgba(0, 123, 255, 0.2)",
         fill: false,
       },
     ],
   };
-  
 
   const ndviOptions = {
     responsive: true,
@@ -201,9 +219,17 @@ const PastStat = () => {
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
       borderColor:
-        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 1)"
+          : index === 1
+          ? "rgba(40, 167, 69, 1)"
+          : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
       backgroundColor:
-        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 0.2)"
+          : index === 1
+          ? "rgba(40, 167, 69, 0.2)"
+          : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -242,9 +268,17 @@ const PastStat = () => {
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
       borderColor:
-        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 1)"
+          : index === 1
+          ? "rgba(40, 167, 69, 1)"
+          : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
       backgroundColor:
-        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 0.2)"
+          : index === 1
+          ? "rgba(40, 167, 69, 0.2)"
+          : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -283,9 +317,17 @@ const PastStat = () => {
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
       borderColor:
-        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 1)"
+          : index === 1
+          ? "rgba(40, 167, 69, 1)"
+          : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
       backgroundColor:
-        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 0.2)"
+          : index === 1
+          ? "rgba(40, 167, 69, 0.2)"
+          : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -324,9 +366,17 @@ const PastStat = () => {
       label: `Year: ${entry.YEAR}`,
       data: labels.map((month) => entry[month]),
       borderColor:
-        index === 0 ? "rgba(0, 123, 255, 1)" : index === 1 ? "rgba(40, 167, 69, 1)" : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 1)"
+          : index === 1
+          ? "rgba(40, 167, 69, 1)"
+          : "rgba(255, 193, 7, 1)", // Blue, Green, Yellow
       backgroundColor:
-        index === 0 ? "rgba(0, 123, 255, 0.2)" : index === 1 ? "rgba(40, 167, 69, 0.2)" : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
+        index === 0
+          ? "rgba(0, 123, 255, 0.2)"
+          : index === 1
+          ? "rgba(40, 167, 69, 0.2)"
+          : "rgba(255, 193, 7, 0.2)", // Blue, Green, Yellow
       fill: false,
     })),
   };
@@ -360,43 +410,60 @@ const PastStat = () => {
 
   return (
     <div className="flex flex-col mb-10 md:flex-row bg-gray-100 rounded-2xl">
-    <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
-          <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
-          <div className="">
-            <Link to="/">
-              <button className="btn btn-outline btn-success w-full mb-4">
-                Current Stats
-              </button>
-            </Link>
-            <Link to="/analysis">
-              <button className="btn btn-outline btn-info w-full mb-4">
-                Analysis
-              </button>
-            </Link>
-            <Link to="/past_stat">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Past Stats
-              </button>
-            </Link>
-            <Link to="/agro_bot">
-              <button className="btn btn-outline btn-success w-full mb-4">
-                Agro bot
-              </button>
-            </Link>
-            <Link to="/community">
-              <button className="btn btn-outline btn-info w-full mb-4">
-                Community
-              </button>
-            </Link>
-            <Link to="/help">
-              <button className="btn btn-outline btn-accent w-full mb-4">
-                Help Desk
-              </button>
-            </Link>
-          </div>
-          </div>
-      <div className="w-full space-y-10">
+      <div className="w-full md:w-2/6 lg:w-1/5 bg-gray-900 text-white p-5 md:rounded-l-2xl lg:rounded-l-2xl text-center">
+        <h2 className="text-3xl font-bold mb-5 text-center">Dashboard</h2>
+        <div>
+          <Link to="/" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-success w-full">
+              <FaChartBar className="mr-2 text-lg" /> Current Stats
+            </button>
+          </Link>
+
+          {/* Analysis */}
+          <Link to="/analysis" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-info w-full">
+              <FaSearch className="mr-2 text-lg" /> Analysis
+            </button>
+          </Link>
+
+          {/* Past Stats */}
+          <Link to="/past_stat" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-accent w-full">
+              <FaHistory className="mr-2 text-lg" /> Past Stats
+            </button>
+          </Link>
+
+          {/* Agro Bot */}
+          <Link to="/agro_bot" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-success w-full">
+              <FaRobot className="mr-2 text-lg" /> Agro Bot
+            </button>
+          </Link>
+
+          {/* Community */}
+          <Link to="/community" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-info w-full">
+              <FaUsers className="mr-2 text-lg" /> Community
+            </button>
+          </Link>
+
+          {/* Help Desk */}
+          <Link to="/help" className="block mb-4">
+            <button className="flex items-center btn btn-outline btn-accent w-full">
+              <FaQuestionCircle className="mr-2 text-lg" /> Help Desk
+            </button>
+          </Link>
+          <Link to="/profile" className="block">
+            <button className="flex items-center btn btn-outline btn-accent w-full">
+              <FaUser className="mr-2 text-lg" /> Profile
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="w-full md:w-4/6 lg:w-4/5 p-5">
         <h2 className="text-2xl font-bold text-center">Monthly Statistics</h2>
+
         <div>
           <Line options={humidityOptions} data={humidityGraph} />
         </div>
@@ -413,7 +480,8 @@ const PastStat = () => {
           <Line options={windOptions} data={windGraph} />
         </div>
         <div>
-          <Line options={ndviOptions} data={ndviGraph} /> {/* Render NDVI graph */}
+          <Line options={ndviOptions} data={ndviGraph} />{" "}
+          {/* Render NDVI graph */}
         </div>
       </div>
     </div>
