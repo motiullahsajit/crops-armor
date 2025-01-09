@@ -222,7 +222,7 @@ const Home = () => {
           {/* Right Section: Crop Calendar Image */}
           <div className="flex justify-center items-center bg-white p-6 rounded-lg shadow-md">
             <img
-              src="https://ipad.fas.usda.gov/countrysummary/images/BG/cropcalendar/bg_bg_calendar.png"
+              src="https://ipad.fas.usda.gov/countrysummary/images/BG/cropcalendar/bg_bg_2_calendar.png"
               alt="Crop Calendar"
               className="w-full h-auto rounded-lg shadow-md"
             />
